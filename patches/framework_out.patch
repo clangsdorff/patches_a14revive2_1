@@ -1,0 +1,1237 @@
+diff --git a/smali/android/app/Activity.smali b/smali/android/app/Activity.smali
+index aec28fc5..67a205d0 100644
+--- a/smali/android/app/Activity.smali
++++ b/smali/android/app/Activity.smali
+@@ -11705,7 +11705,7 @@
+     .end packed-switch
+ .end method
+ 
+-.method public setDisablePreviewScreenshots(Z)V
++.method public whitelist setDisablePreviewScreenshots(Z)V
+     .locals 1
+ 
+     xor-int/lit8 v0, p1, 0x1
+diff --git a/smali/android/app/ActivityThread.smali b/smali/android/app/ActivityThread.smali
+index 92cb0e8d..ce9b17f7 100644
+--- a/smali/android/app/ActivityThread.smali
++++ b/smali/android/app/ActivityThread.smali
+@@ -111,9 +111,9 @@
+ 
+ .field private static final blacklist VM_PROCESS_STATE_JANK_IMPERCEPTIBLE:I = 0x1
+ 
+-.field private static final blacklist VM_PROCESS_STATE_JANK_PERCEPTIBLE:I = 0x0
++.field private static final blacklist VM_PROCESS_STATE_JANK_PERCEPTIBLE:I
+ 
+-.field static final greylist-max-o localLOGV:Z = false
++.field static final greylist-max-o localLOGV:Z
+ 
+ .field private static blacklist mIsAnomalyDetected:Z
+ 
+diff --git a/smali/android/app/DisabledWallpaperManager.smali b/smali/android/app/DisabledWallpaperManager.smali
+index fa29e789..ccfcf320 100644
+--- a/smali/android/app/DisabledWallpaperManager.smali
++++ b/smali/android/app/DisabledWallpaperManager.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali/android/app/Instrumentation.smali b/smali/android/app/Instrumentation.smali
+index 9f782fb6..40d86348 100644
+--- a/smali/android/app/Instrumentation.smali
++++ b/smali/android/app/Instrumentation.smali
+@@ -614,6 +614,8 @@
+ 
+     invoke-virtual {v0, p1}, Landroid/app/Application;->attach(Landroid/content/Context;)V
+ 
++    invoke-static {p1}, Lio/mesalabs/unica/KnoxPatchHooks;->init(Landroid/content/Context;)V
++
+     return-object v0
+ .end method
+ 
+@@ -3429,6 +3431,8 @@
+ 
+     invoke-virtual {v0, p3}, Landroid/app/Application;->attach(Landroid/content/Context;)V
+ 
++    invoke-static {p3}, Lio/mesalabs/unica/KnoxPatchHooks;->init(Landroid/content/Context;)V
++
+     return-object v0
+ .end method
+ 
+diff --git a/smali/android/app/LocalActivityManager.smali b/smali/android/app/LocalActivityManager.smali
+index 01be745f..05852fda 100644
+--- a/smali/android/app/LocalActivityManager.smali
++++ b/smali/android/app/LocalActivityManager.smali
+@@ -29,7 +29,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "LocalActivityManager"
+ 
+-.field private static final greylist-max-o localLOGV:Z = false
++.field private static final greylist-max-o localLOGV:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/app/PropertyInvalidatedCache.smali b/smali/android/app/PropertyInvalidatedCache.smali
+index c1b5a7e2..432b6232 100644
+--- a/smali/android/app/PropertyInvalidatedCache.smali
++++ b/smali/android/app/PropertyInvalidatedCache.smali
+@@ -54,7 +54,7 @@
+ 
+ .field private static final blacklist TAG:Ljava/lang/String; = "PropertyInvalidatedCache"
+ 
+-.field private static final blacklist VERIFY:Z = false
++.field private static final blacklist VERIFY:Z
+ 
+ .field private static final blacklist sCaches:Ljava/util/WeakHashMap;
+     .annotation system Ldalvik/annotation/Signature;
+diff --git a/smali/android/app/search/SearchSession.smali b/smali/android/app/search/SearchSession.smali
+index 1ff16fbe..fc254265 100644
+--- a/smali/android/app/search/SearchSession.smali
++++ b/smali/android/app/search/SearchSession.smali
+@@ -18,7 +18,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali/android/app/smartspace/SmartspaceSession.smali b/smali/android/app/smartspace/SmartspaceSession.smali
+index 0fc3e2f8..c6c43683 100644
+--- a/smali/android/app/smartspace/SmartspaceSession.smali
++++ b/smali/android/app/smartspace/SmartspaceSession.smali
+@@ -19,7 +19,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali/android/content/AsyncQueryHandler.smali b/smali/android/content/AsyncQueryHandler.smali
+index e5703573..51685437 100644
+--- a/smali/android/content/AsyncQueryHandler.smali
++++ b/smali/android/content/AsyncQueryHandler.smali
+@@ -23,7 +23,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "AsyncQuery"
+ 
+-.field private static final greylist-max-o localLOGV:Z = false
++.field private static final greylist-max-o localLOGV:Z
+ 
+ .field private static greylist-max-o sLooper:Landroid/os/Looper;
+ 
+diff --git a/smali/android/content/res/StringBlock.smali b/smali/android/content/res/StringBlock.smali
+index a3583be0..a848fcec 100644
+--- a/smali/android/content/res/StringBlock.smali
++++ b/smali/android/content/res/StringBlock.smali
+@@ -18,7 +18,7 @@
+ # static fields
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "AssetManager"
+ 
+-.field private static final greylist-max-o localLOGV:Z = false
++.field private static final greylist-max-o localLOGV:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/content/res/XmlBlock.smali b/smali/android/content/res/XmlBlock.smali
+index e2dc5da2..1fab876d 100644
+--- a/smali/android/content/res/XmlBlock.smali
++++ b/smali/android/content/res/XmlBlock.smali
+@@ -15,7 +15,7 @@
+ 
+ 
+ # static fields
+-.field private static final greylist-max-o DEBUG:Z = false
++.field private static final greylist-max-o DEBUG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/database/sqlite/SQLiteSdpHelper.smali b/smali/android/database/sqlite/SQLiteSdpHelper.smali
+index cb144558..55e31425 100644
+--- a/smali/android/database/sqlite/SQLiteSdpHelper.smali
++++ b/smali/android/database/sqlite/SQLiteSdpHelper.smali
+@@ -6,7 +6,7 @@
+ # static fields
+ .field private static final blacklist TAG:Ljava/lang/String; = "SQLiteSdpHelper"
+ 
+-.field private static final blacklist mIsSdpSupported:Z = false
++.field private static final blacklist mIsSdpSupported:Z
+ 
+ .field private static blacklist sService:Lcom/samsung/android/knox/dar/IDarManagerService;
+ 
+diff --git a/smali/android/ddm/DdmHandleProfiling.smali b/smali/android/ddm/DdmHandleProfiling.smali
+index 0df59d5b..2bc1c514 100644
+--- a/smali/android/ddm/DdmHandleProfiling.smali
++++ b/smali/android/ddm/DdmHandleProfiling.smali
+@@ -18,7 +18,7 @@
+ 
+ .field public static final greylist-max-o CHUNK_SPSS:I
+ 
+-.field private static final greylist-max-o DEBUG:Z = false
++.field private static final greylist-max-o DEBUG:Z
+ 
+ .field private static greylist-max-o mInstance:Landroid/ddm/DdmHandleProfiling;
+ 
+diff --git a/smali/android/drm/DrmManagerClient.smali b/smali/android/drm/DrmManagerClient.smali
+index 6910186b..32556259 100644
+--- a/smali/android/drm/DrmManagerClient.smali
++++ b/smali/android/drm/DrmManagerClient.smali
+@@ -36,7 +36,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "DrmManagerClient"
+ 
+-.field private static final blacklist isLogEnabled:Z = false
++.field private static final blacklist isLogEnabled:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/graphics/drawable/NinePatchDrawable.smali b/smali/android/graphics/drawable/NinePatchDrawable.smali
+index 798d7feb..ba0ede8e 100644
+--- a/smali/android/graphics/drawable/NinePatchDrawable.smali
++++ b/smali/android/graphics/drawable/NinePatchDrawable.smali
+@@ -12,7 +12,7 @@
+ 
+ 
+ # static fields
+-.field private static final greylist-max-o DEFAULT_DITHER:Z = false
++.field private static final greylist-max-o DEFAULT_DITHER:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/hardware/camera2/CaptureResult.smali b/smali/android/hardware/camera2/CaptureResult.smali
+index 01ddc492..fb04056d 100644
+--- a/smali/android/hardware/camera2/CaptureResult.smali
++++ b/smali/android/hardware/camera2/CaptureResult.smali
+@@ -1386,7 +1386,7 @@
+     .end annotation
+ .end field
+ 
+-.field private static final greylist-max-o VERBOSE:Z = false
++.field private static final greylist-max-o VERBOSE:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/hardware/camera2/marshal/impl/MarshalQueryableArray.smali b/smali/android/hardware/camera2/marshal/impl/MarshalQueryableArray.smali
+index f9ab2e71..a12f3ba7 100644
+--- a/smali/android/hardware/camera2/marshal/impl/MarshalQueryableArray.smali
++++ b/smali/android/hardware/camera2/marshal/impl/MarshalQueryableArray.smali
+@@ -27,7 +27,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali/android/hardware/camera2/marshal/impl/MarshalQueryableString.smali b/smali/android/hardware/camera2/marshal/impl/MarshalQueryableString.smali
+index b1ea6b15..86349965 100644
+--- a/smali/android/hardware/camera2/marshal/impl/MarshalQueryableString.smali
++++ b/smali/android/hardware/camera2/marshal/impl/MarshalQueryableString.smali
+@@ -25,7 +25,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist NUL:B
+ 
+diff --git a/smali/android/hardware/camera2/utils/CloseableLock.smali b/smali/android/hardware/camera2/utils/CloseableLock.smali
+index cac8fd9b..4d84889e 100644
+--- a/smali/android/hardware/camera2/utils/CloseableLock.smali
++++ b/smali/android/hardware/camera2/utils/CloseableLock.smali
+@@ -15,7 +15,7 @@
+ 
+ 
+ # static fields
+-.field private static final greylist-max-o VERBOSE:Z = false
++.field private static final greylist-max-o VERBOSE:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/android/hardware/display/DisplayManagerGlobal.smali b/smali/android/hardware/display/DisplayManagerGlobal.smali
+index 1f5de7b7..16f79e2f 100644
+--- a/smali/android/hardware/display/DisplayManagerGlobal.smali
++++ b/smali/android/hardware/display/DisplayManagerGlobal.smali
+@@ -52,7 +52,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "DisplayManager"
+ 
+-.field private static final greylist-max-o USE_CACHE:Z = false
++.field private static final greylist-max-o USE_CACHE:Z
+ 
+ .field private static greylist sInstance:Landroid/hardware/display/DisplayManagerGlobal;
+ 
+diff --git a/smali/com/android/internal/util/dump/DumpableContainerImpl.smali b/smali/com/android/internal/util/dump/DumpableContainerImpl.smali
+index 9a5580e0..8a0afe2a 100644
+--- a/smali/com/android/internal/util/dump/DumpableContainerImpl.smali
++++ b/smali/com/android/internal/util/dump/DumpableContainerImpl.smali
+@@ -7,7 +7,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes2/android/media/AsyncPlayer.smali b/smali_classes2/android/media/AsyncPlayer.smali
+index 7e7e2bf3..4ee760d6 100644
+--- a/smali_classes2/android/media/AsyncPlayer.smali
++++ b/smali_classes2/android/media/AsyncPlayer.smali
+@@ -17,7 +17,7 @@
+ 
+ .field private static final greylist-max-o STOP:I = 0x2
+ 
+-.field private static final greylist-max-o mDebug:Z = false
++.field private static final greylist-max-o mDebug:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes2/android/media/MediaHTTPConnection.smali b/smali_classes2/android/media/MediaHTTPConnection.smali
+index 92549389..d4346077 100644
+--- a/smali_classes2/android/media/MediaHTTPConnection.smali
++++ b/smali_classes2/android/media/MediaHTTPConnection.smali
+@@ -12,7 +12,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "MediaHTTPConnection"
+ 
+-.field private static final greylist-max-o VERBOSE:Z = false
++.field private static final greylist-max-o VERBOSE:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes2/android/media/soundtrigger/SoundTriggerDetectionService.smali b/smali_classes2/android/media/soundtrigger/SoundTriggerDetectionService.smali
+index 2ec591fe..4a1ec8e6 100644
+--- a/smali_classes2/android/media/soundtrigger/SoundTriggerDetectionService.smali
++++ b/smali_classes2/android/media/soundtrigger/SoundTriggerDetectionService.smali
+@@ -9,7 +9,7 @@
+ 
+ 
+ # static fields
+-.field private static final greylist-max-o DEBUG:Z = false
++.field private static final greylist-max-o DEBUG:Z
+ 
+ .field private static final greylist-max-o LOG_TAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes2/com/android/internal/os/ProcessCpuTracker.smali b/smali_classes2/com/android/internal/os/ProcessCpuTracker.smali
+index c13fa7bd..538d0c74 100644
+--- a/smali_classes2/com/android/internal/os/ProcessCpuTracker.smali
++++ b/smali_classes2/com/android/internal/os/ProcessCpuTracker.smali
+@@ -43,7 +43,7 @@
+ 
+ .field private static final blacklist TAG:Ljava/lang/String; = "ProcessCpuTracker"
+ 
+-.field private static final blacklist localLOGV:Z = false
++.field private static final blacklist localLOGV:Z
+ 
+ .field private static final blacklist sLoadComparator:Ljava/util/Comparator;
+     .annotation system Ldalvik/annotation/Signature;
+diff --git a/smali_classes3/android/os/PowerManager.smali b/smali_classes3/android/os/PowerManager.smali
+index ae3abdd9..cb0d1baf 100644
+--- a/smali_classes3/android/os/PowerManager.smali
++++ b/smali_classes3/android/os/PowerManager.smali
+@@ -1931,7 +1931,7 @@
+     throw v1
+ .end method
+ 
+-.method public isLightDeviceIdleMode()Z
++.method public whitelist isLightDeviceIdleMode()Z
+     .locals 1
+     .annotation runtime Ljava/lang/Deprecated;
+     .end annotation
+diff --git a/smali_classes3/android/os/Process.smali b/smali_classes3/android/os/Process.smali
+index f3b1d807..191be079 100644
+--- a/smali_classes3/android/os/Process.smali
++++ b/smali_classes3/android/os/Process.smali
+@@ -1001,7 +1001,7 @@
+ .method public static final native greylist-max-p sendSignalQuiet(II)V
+ .end method
+ 
+-.method public static setArgV0(Ljava/lang/String;)V
++.method public static whitelist setArgV0(Ljava/lang/String;)V
+     .locals 0
+ 
+     sput-object p0, Landroid/os/Process;->sArgV0:Ljava/lang/String;
+diff --git a/smali_classes3/android/os/SystemProperties.smali b/smali_classes3/android/os/SystemProperties.smali
+index 25fa7c61..009f9115 100644
+--- a/smali_classes3/android/os/SystemProperties.smali
++++ b/smali_classes3/android/os/SystemProperties.smali
+@@ -21,7 +21,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "SystemProperties"
+ 
+-.field private static final greylist-max-o TRACK_KEY_ACCESS:Z = false
++.field private static final greylist-max-o TRACK_KEY_ACCESS:Z
+ 
+ .field private static final greylist sChangeCallbacks:Ljava/util/ArrayList;
+     .annotation system Ldalvik/annotation/Signature;
+@@ -367,6 +367,15 @@
+     .annotation runtime Landroid/annotation/SystemApi;
+     .end annotation
+ 
++    invoke-static {p0}, Lio/mesalabs/unica/KnoxPatchHooks;->onSystemPropertiesGet(Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
++
++    if-eqz v0, :cond_0
++
++    return-object v0
++
++    :cond_0
+     invoke-static {p0}, Landroid/os/SystemProperties;->native_get(Ljava/lang/String;)Ljava/lang/String;
+ 
+     move-result-object v0
+@@ -379,6 +388,15 @@
+     .annotation runtime Landroid/annotation/SystemApi;
+     .end annotation
+ 
++    invoke-static {p0}, Lio/mesalabs/unica/KnoxPatchHooks;->onSystemPropertiesGet(Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
++
++    if-eqz v0, :cond_0
++
++    return-object v0
++
++    :cond_0
+     invoke-static {p0, p1}, Landroid/os/SystemProperties;->native_get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+ 
+     move-result-object v0
+diff --git a/smali_classes3/android/provider/CallLog.smali b/smali_classes3/android/provider/CallLog.smali
+index f8611287..02501834 100644
+--- a/smali_classes3/android/provider/CallLog.smali
++++ b/smali_classes3/android/provider/CallLog.smali
+@@ -29,7 +29,7 @@
+ 
+ .field public static final blacklist SHADOW_CALL_COMPOSER_PICTURE_URI:Landroid/net/Uri;
+ 
+-.field private static final greylist-max-o VERBOSE_LOG:Z = false
++.field private static final greylist-max-o VERBOSE_LOG:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/android/security/net/config/NetworkSecurityConfig.smali b/smali_classes3/android/security/net/config/NetworkSecurityConfig.smali
+index 3a58eea3..b2b22d7d 100644
+--- a/smali_classes3/android/security/net/config/NetworkSecurityConfig.smali
++++ b/smali_classes3/android/security/net/config/NetworkSecurityConfig.smali
+@@ -14,7 +14,7 @@
+ # static fields
+ .field public static final greylist-max-o DEFAULT_CLEARTEXT_TRAFFIC_PERMITTED:Z = true
+ 
+-.field public static final greylist-max-o DEFAULT_HSTS_ENFORCED:Z = false
++.field public static final greylist-max-o DEFAULT_HSTS_ENFORCED:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/android/service/voice/AbstractHotwordDetector.smali b/smali_classes3/android/service/voice/AbstractHotwordDetector.smali
+index 76dff185..cb77c55b 100644
+--- a/smali_classes3/android/service/voice/AbstractHotwordDetector.smali
++++ b/smali_classes3/android/service/voice/AbstractHotwordDetector.smali
+@@ -15,7 +15,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes3/android/service/voice/SoftwareHotwordDetector.smali b/smali_classes3/android/service/voice/SoftwareHotwordDetector.smali
+index 3f59eff4..65146453 100644
+--- a/smali_classes3/android/service/voice/SoftwareHotwordDetector.smali
++++ b/smali_classes3/android/service/voice/SoftwareHotwordDetector.smali
+@@ -13,7 +13,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes3/android/telecom/Log.smali b/smali_classes3/android/telecom/Log.smali
+index a0a57bb5..34bb7ac2 100644
+--- a/smali_classes3/android/telecom/Log.smali
++++ b/smali_classes3/android/telecom/Log.smali
+@@ -14,7 +14,7 @@
+ 
+ .field private static final greylist-max-o EXTENDED_LOGGING_DURATION_MILLIS:J = 0x1b7740L
+ 
+-.field private static final greylist-max-o FORCE_LOGGING:Z = false
++.field private static final greylist-max-o FORCE_LOGGING:Z
+ 
+ .field public static greylist-max-o INFO:Z
+ 
+diff --git a/smali_classes3/android/telephony/CellSignalStrengthNr.smali b/smali_classes3/android/telephony/CellSignalStrengthNr.smali
+index dbee15f6..ad483bfd 100644
+--- a/smali_classes3/android/telephony/CellSignalStrengthNr.smali
++++ b/smali_classes3/android/telephony/CellSignalStrengthNr.smali
+@@ -35,7 +35,7 @@
+ 
+ .field public static final blacklist USE_SSSINR:I = 0x4
+ 
+-.field private static final blacklist VDBG:Z = false
++.field private static final blacklist VDBG:Z
+ 
+ .field private static final blacklist sInvalid:Landroid/telephony/CellSignalStrengthNr;
+ 
+diff --git a/smali_classes3/android/telephony/ServiceState.smali b/smali_classes3/android/telephony/ServiceState.smali
+index 62c28cfb..d617c484 100644
+--- a/smali_classes3/android/telephony/ServiceState.smali
++++ b/smali_classes3/android/telephony/ServiceState.smali
+@@ -181,7 +181,7 @@
+ 
+ .field public static final whitelist UNKNOWN_ID:I = -0x1
+ 
+-.field static final greylist-max-o VDBG:Z = false
++.field static final greylist-max-o VDBG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/android/telephony/data/ApnSetting.smali b/smali_classes3/android/telephony/data/ApnSetting.smali
+index 16e7cb96..a7cfc842 100644
+--- a/smali_classes3/android/telephony/data/ApnSetting.smali
++++ b/smali_classes3/android/telephony/data/ApnSetting.smali
+@@ -285,7 +285,7 @@
+ 
+ .field private static final blacklist V7_FORMAT_REGEX:Ljava/lang/String; = "^\\[ApnSettingV7\\]\\s*"
+ 
+-.field private static final greylist-max-o VDBG:Z = false
++.field private static final greylist-max-o VDBG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/android/internal/telephony/CellBroadcastUtils.smali b/smali_classes3/com/android/internal/telephony/CellBroadcastUtils.smali
+index 9fb92275..7242a348 100644
+--- a/smali_classes3/com/android/internal/telephony/CellBroadcastUtils.smali
++++ b/smali_classes3/com/android/internal/telephony/CellBroadcastUtils.smali
+@@ -6,7 +6,7 @@
+ # static fields
+ .field private static final blacklist TAG:Ljava/lang/String; = "CellBroadcastUtils"
+ 
+-.field private static final blacklist VDBG:Z = false
++.field private static final blacklist VDBG:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/android/internal/telephony/cdma/SmsMessage.smali b/smali_classes3/com/android/internal/telephony/cdma/SmsMessage.smali
+index 166b1c5f..12c53968 100644
+--- a/smali_classes3/com/android/internal/telephony/cdma/SmsMessage.smali
++++ b/smali_classes3/com/android/internal/telephony/cdma/SmsMessage.smali
+@@ -44,9 +44,9 @@
+ 
+ .field private static final blacklist SERVICE_CATEGORY:B = 0x1t
+ 
+-.field private static final blacklist TELESERVICE_IDENTIFIER:B = 0x0t
++.field private static final blacklist TELESERVICE_IDENTIFIER:B
+ 
+-.field private static final blacklist VDBG:Z = false
++.field private static final blacklist VDBG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/android/internal/telephony/gsm/SmsMessage.smali b/smali_classes3/com/android/internal/telephony/gsm/SmsMessage.smali
+index 8dbf7653..4f00dc27 100644
+--- a/smali_classes3/com/android/internal/telephony/gsm/SmsMessage.smali
++++ b/smali_classes3/com/android/internal/telephony/gsm/SmsMessage.smali
+@@ -31,7 +31,7 @@
+ 
+ .field private static final blacklist VALIDITY_PERIOD_MIN:I = 0x5
+ 
+-.field private static final blacklist VDBG:Z = false
++.field private static final blacklist VDBG:Z
+ 
+ .field private static blacklist mIgnoreSpecialChar:Z
+ 
+diff --git a/smali_classes4/android/view/DragEvent.smali b/smali_classes4/android/view/DragEvent.smali
+index 014b35e7..9c888060 100644
+--- a/smali_classes4/android/view/DragEvent.smali
++++ b/smali_classes4/android/view/DragEvent.smali
+@@ -31,7 +31,7 @@
+ 
+ .field private static final greylist-max-o MAX_RECYCLED:I = 0xa
+ 
+-.field private static final greylist-max-o TRACK_RECYCLED_LOCATION:Z = false
++.field private static final greylist-max-o TRACK_RECYCLED_LOCATION:Z
+ 
+ .field private static final greylist-max-o gRecyclerLock:Ljava/lang/Object;
+ 
+diff --git a/smali_classes4/android/view/InputEvent.smali b/smali_classes4/android/view/InputEvent.smali
+index 82c63206..6cfe5b94 100644
+--- a/smali_classes4/android/view/InputEvent.smali
++++ b/smali_classes4/android/view/InputEvent.smali
+@@ -21,7 +21,7 @@
+ 
+ .field protected static final greylist-max-o PARCEL_TOKEN_MOTION_EVENT:I = 0x1
+ 
+-.field private static final greylist-max-o TRACK_RECYCLED_LOCATION:Z = false
++.field private static final greylist-max-o TRACK_RECYCLED_LOCATION:Z
+ 
+ .field private static final greylist-max-o mNextSeq:Ljava/util/concurrent/atomic/AtomicInteger;
+ 
+diff --git a/smali_classes4/android/view/OrientationEventListener.smali b/smali_classes4/android/view/OrientationEventListener.smali
+index 80c8b388..e0b105a4 100644
+--- a/smali_classes4/android/view/OrientationEventListener.smali
++++ b/smali_classes4/android/view/OrientationEventListener.smali
+@@ -18,7 +18,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "OrientationEventListener"
+ 
+-.field private static final greylist-max-o localLOGV:Z = false
++.field private static final greylist-max-o localLOGV:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes4/android/view/ViewDebug.smali b/smali_classes4/android/view/ViewDebug.smali
+index 196bdb46..95d6d6ff 100644
+--- a/smali_classes4/android/view/ViewDebug.smali
++++ b/smali_classes4/android/view/ViewDebug.smali
+@@ -51,12 +51,12 @@
+ 
+ .field private static final greylist-max-o REMOTE_PROFILE:Ljava/lang/String; = "PROFILE"
+ 
+-.field public static final whitelist TRACE_HIERARCHY:Z = false
++.field public static final whitelist TRACE_HIERARCHY:Z
+     .annotation runtime Ljava/lang/Deprecated;
+     .end annotation
+ .end field
+ 
+-.field public static final whitelist TRACE_RECYCLER:Z = false
++.field public static final whitelist TRACE_RECYCLER:Z
+     .annotation runtime Ljava/lang/Deprecated;
+     .end annotation
+ .end field
+diff --git a/smali_classes4/android/view/accessibility/AccessibilityInteractionClient.smali b/smali_classes4/android/view/accessibility/AccessibilityInteractionClient.smali
+index 67280661..9d9839ee 100644
+--- a/smali_classes4/android/view/accessibility/AccessibilityInteractionClient.smali
++++ b/smali_classes4/android/view/accessibility/AccessibilityInteractionClient.smali
+@@ -1533,7 +1533,7 @@
+ 
+ 
+ # virtual methods
+-.method public clearCache(I)V
++.method public whitelist clearCache(I)V
+     .locals 1
+ 
+     invoke-static {p1}, Landroid/view/accessibility/AccessibilityInteractionClient;->getCache(I)Landroid/view/accessibility/AccessibilityCache;
+diff --git a/smali_classes4/android/view/accessibility/CaptioningManager.smali b/smali_classes4/android/view/accessibility/CaptioningManager.smali
+index 8c4a8051..17ce62fb 100644
+--- a/smali_classes4/android/view/accessibility/CaptioningManager.smali
++++ b/smali_classes4/android/view/accessibility/CaptioningManager.smali
+@@ -19,9 +19,9 @@
+ 
+ .field private static final greylist-max-o DEFAULT_FONT_SCALE:F = 1.0f
+ 
+-.field private static final greylist-max-o DEFAULT_PRESET:I = 0x0
++.field private static final greylist-max-o DEFAULT_PRESET:I
+ 
+-.field private static final blacklist SYSTEM_AUDIO_CAPTIONING_DEFAULT_ENABLED:Z = false
++.field private static final blacklist SYSTEM_AUDIO_CAPTIONING_DEFAULT_ENABLED:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes4/android/view/textservice/TextServicesManager.smali b/smali_classes4/android/view/textservice/TextServicesManager.smali
+index 2b3f6376..daa048fd 100644
+--- a/smali_classes4/android/view/textservice/TextServicesManager.smali
++++ b/smali_classes4/android/view/textservice/TextServicesManager.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static final greylist-max-o DBG:Z = false
++.field private static final greylist-max-o DBG:Z
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes4/android/webkit/URLUtil.smali b/smali_classes4/android/webkit/URLUtil.smali
+index fa532e91..3d9cc16f 100644
+--- a/smali_classes4/android/webkit/URLUtil.smali
++++ b/smali_classes4/android/webkit/URLUtil.smali
+@@ -18,7 +18,7 @@
+ 
+ .field static final greylist-max-o RESOURCE_BASE:Ljava/lang/String; = "file:///android_res/"
+ 
+-.field private static final greylist-max-o TRACE:Z = false
++.field private static final greylist-max-o TRACE:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes4/android/webkit/WebViewLibraryLoader.smali b/smali_classes4/android/webkit/WebViewLibraryLoader.smali
+index edd11a54..bca41448 100644
+--- a/smali_classes4/android/webkit/WebViewLibraryLoader.smali
++++ b/smali_classes4/android/webkit/WebViewLibraryLoader.smali
+@@ -16,7 +16,7 @@
+ 
+ .field private static final greylist-max-o CHROMIUM_WEBVIEW_NATIVE_RELRO_64:Ljava/lang/String; = "/data/misc/shared_relro/libwebviewchromium64.relro"
+ 
+-.field private static final greylist-max-o DEBUG:Z = false
++.field private static final greylist-max-o DEBUG:Z
+ 
+ .field private static final greylist-max-o LOGTAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes4/android/widget/Gallery.smali b/smali_classes4/android/widget/Gallery.smali
+index 84b24ff3..ede2b9ca 100644
+--- a/smali_classes4/android/widget/Gallery.smali
++++ b/smali_classes4/android/widget/Gallery.smali
+@@ -23,7 +23,7 @@
+ 
+ .field private static final greylist-max-o TAG:Ljava/lang/String; = "Gallery"
+ 
+-.field private static final greylist-max-o localLOGV:Z = false
++.field private static final greylist-max-o localLOGV:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes4/android/widget/directwriting/DirectWritingLogger.smali b/smali_classes4/android/widget/directwriting/DirectWritingLogger.smali
+index b33aa19b..aed0ae65 100644
+--- a/smali_classes4/android/widget/directwriting/DirectWritingLogger.smali
++++ b/smali_classes4/android/widget/directwriting/DirectWritingLogger.smali
+@@ -6,7 +6,7 @@
+ # static fields
+ .field static final blacklist DEBUG:Z
+ 
+-.field static final blacklist DEBUG_ENABLE:Z = false
++.field static final blacklist DEBUG_ENABLE:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes4/com/android/internal/app/ChooserActivity.smali b/smali_classes4/com/android/internal/app/ChooserActivity.smali
+index eb3faaf9..9ca2117d 100644
+--- a/smali_classes4/com/android/internal/app/ChooserActivity.smali
++++ b/smali_classes4/com/android/internal/app/ChooserActivity.smali
+@@ -425,7 +425,7 @@
+ 
+ .field private static final blacklist TRANSCODE_DIR_PATH:Ljava/lang/String; = "/data/semprivateshare/transcode"
+ 
+-.field private static final blacklist USE_PREDICTION_MANAGER_FOR_SHARE_ACTIVITIES:Z = false
++.field private static final blacklist USE_PREDICTION_MANAGER_FOR_SHARE_ACTIVITIES:Z
+ 
+ .field private static blacklist mChooserTargetResultForDevice:Landroid/service/chooser/IChooserTargetResult;
+ 
+diff --git a/smali_classes4/com/android/internal/app/procstats/AssociationState.smali b/smali_classes4/com/android/internal/app/procstats/AssociationState.smali
+index 46e34dae..f018aa02 100644
+--- a/smali_classes4/com/android/internal/app/procstats/AssociationState.smali
++++ b/smali_classes4/com/android/internal/app/procstats/AssociationState.smali
+@@ -30,7 +30,7 @@
+ 
+ .field private static final blacklist TAG:Ljava/lang/String; = "ProcessStats"
+ 
+-.field private static final blacklist VALIDATE_TIMES:Z = false
++.field private static final blacklist VALIDATE_TIMES:Z
+ 
+ .field private static final blacklist sTmpSourceKey:Lcom/android/internal/app/procstats/AssociationState$SourceKey;
+ 
+diff --git a/smali_classes4/com/android/internal/infra/AndroidFuture.smali b/smali_classes4/com/android/internal/infra/AndroidFuture.smali
+index 9796d3bf..1a9ccb46 100644
+--- a/smali_classes4/com/android/internal/infra/AndroidFuture.smali
++++ b/smali_classes4/com/android/internal/infra/AndroidFuture.smali
+@@ -39,7 +39,7 @@
+     .end annotation
+ .end field
+ 
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist DIRECT_EXECUTOR:Ljava/util/concurrent/Executor;
+ 
+diff --git a/smali_classes4/com/android/internal/util/IState.smali b/smali_classes4/com/android/internal/util/IState.smali
+index 0aa61a1f..8c59c849 100644
+--- a/smali_classes4/com/android/internal/util/IState.smali
++++ b/smali_classes4/com/android/internal/util/IState.smali
+@@ -6,7 +6,7 @@
+ # static fields
+ .field public static final blacklist HANDLED:Z = true
+ 
+-.field public static final blacklist NOT_HANDLED:Z = false
++.field public static final blacklist NOT_HANDLED:Z
+ 
+ 
+ # virtual methods
+diff --git a/smali_classes4/com/android/internal/util/MessageUtils.smali b/smali_classes4/com/android/internal/util/MessageUtils.smali
+index 68512224..6cb7b669 100644
+--- a/smali_classes4/com/android/internal/util/MessageUtils.smali
++++ b/smali_classes4/com/android/internal/util/MessageUtils.smali
+@@ -12,7 +12,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DBG:Z = false
++.field private static final blacklist DBG:Z
+ 
+ .field public static final blacklist DEFAULT_PREFIXES:[Ljava/lang/String;
+ 
+diff --git a/smali_classes5/com/android/internal/widget/DefaultItemAnimator.smali b/smali_classes5/com/android/internal/widget/DefaultItemAnimator.smali
+index 8be65376..d15b220f 100644
+--- a/smali_classes5/com/android/internal/widget/DefaultItemAnimator.smali
++++ b/smali_classes5/com/android/internal/widget/DefaultItemAnimator.smali
+@@ -13,7 +13,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static blacklist sDefaultInterpolator:Landroid/animation/TimeInterpolator;
+ 
+diff --git a/smali_classes5/com/android/internal/widget/ViewInfoStore.smali b/smali_classes5/com/android/internal/widget/ViewInfoStore.smali
+index 4d738e39..885a26bb 100644
+--- a/smali_classes5/com/android/internal/widget/ViewInfoStore.smali
++++ b/smali_classes5/com/android/internal/widget/ViewInfoStore.smali
+@@ -13,7 +13,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes5/com/android/internal/widget/ViewPager.smali b/smali_classes5/com/android/internal/widget/ViewPager.smali
+index eb488e55..8cb6bed2 100644
+--- a/smali_classes5/com/android/internal/widget/ViewPager.smali
++++ b/smali_classes5/com/android/internal/widget/ViewPager.smali
+@@ -65,7 +65,7 @@
+ 
+ .field private static final blacklist TAG:Ljava/lang/String; = "ViewPager"
+ 
+-.field private static final blacklist USE_CACHE:Z = false
++.field private static final blacklist USE_CACHE:Z
+ 
+ .field private static final blacklist sInterpolator:Landroid/view/animation/Interpolator;
+ 
+diff --git a/smali_classes5/com/android/server/FMRadioServiceFeature.smali b/smali_classes5/com/android/server/FMRadioServiceFeature.smali
+index 1a8c4523..4d92b8d5 100644
+--- a/smali_classes5/com/android/server/FMRadioServiceFeature.smali
++++ b/smali_classes5/com/android/server/FMRadioServiceFeature.smali
+@@ -50,7 +50,7 @@
+ 
+ .field public static final blacklist FEATURE_USE_CHIPSET_VOLUME:Z
+ 
+-.field public static final blacklist FEATURE_WAIT_PID_DURING_SCAN:Z = false
++.field public static final blacklist FEATURE_WAIT_PID_DURING_SCAN:Z
+ 
+ .field public static final blacklist HYBRID_SEARCH_LIST:Ljava/lang/String;
+ 
+diff --git a/smali_classes5/com/android/server/net/NetlinkTracker.smali b/smali_classes5/com/android/server/net/NetlinkTracker.smali
+index 7b0c57d7..7c1fc565 100644
+--- a/smali_classes5/com/android/server/net/NetlinkTracker.smali
++++ b/smali_classes5/com/android/server/net/NetlinkTracker.smali
+@@ -12,7 +12,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DBG:Z = false
++.field private static final blacklist DBG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes5/com/samsung/android/ProductPackagesRune.smali b/smali_classes5/com/samsung/android/ProductPackagesRune.smali
+index 7ec383b6..54e58818 100644
+--- a/smali_classes5/com/samsung/android/ProductPackagesRune.smali
++++ b/smali_classes5/com/samsung/android/ProductPackagesRune.smali
+@@ -34,7 +34,7 @@
+ 
+ .field public static final blacklist SERVICE_SAMSUNG_REMOTEAPPMODE:Z = true
+ 
+-.field public static final blacklist SUPPORT_GALAXY_TIPS:Z = false
++.field public static final blacklist SUPPORT_GALAXY_TIPS:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes5/com/samsung/android/allshare/extension/GlobalConfig.smali b/smali_classes5/com/samsung/android/allshare/extension/GlobalConfig.smali
+index 31a9a1be..1b289731 100644
+--- a/smali_classes5/com/samsung/android/allshare/extension/GlobalConfig.smali
++++ b/smali_classes5/com/samsung/android/allshare/extension/GlobalConfig.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field public static final blacklist GLOBALCONFIG_WLAN_CONCURRENT_MODE:Z = false
++.field public static final blacklist GLOBALCONFIG_WLAN_CONCURRENT_MODE:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes5/com/samsung/android/core/pm/containerservice/PackageHelperExt.smali b/smali_classes5/com/samsung/android/core/pm/containerservice/PackageHelperExt.smali
+index 30792f82..8de59985 100644
+--- a/smali_classes5/com/samsung/android/core/pm/containerservice/PackageHelperExt.smali
++++ b/smali_classes5/com/samsung/android/core/pm/containerservice/PackageHelperExt.smali
+@@ -12,7 +12,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG_MOVE:Z = false
++.field private static final blacklist DEBUG_MOVE:Z
+ 
+ .field private static final blacklist MB_IN_BYTES:J
+ 
+diff --git a/smali_classes5/com/samsung/android/desktopmode/DesktopModeFeature.smali b/smali_classes5/com/samsung/android/desktopmode/DesktopModeFeature.smali
+index 361ac2b0..38de71e5 100644
+--- a/smali_classes5/com/samsung/android/desktopmode/DesktopModeFeature.smali
++++ b/smali_classes5/com/samsung/android/desktopmode/DesktopModeFeature.smali
+@@ -24,7 +24,7 @@
+ 
+ .field public static final blacklist FOLDABLE_TYPE_FOLD:Z
+ 
+-.field public static final blacklist IS_FOLDABLE:Z = false
++.field public static final blacklist IS_FOLDABLE:Z
+ 
+ .field public static final blacklist IS_TABLET:Z
+ 
+diff --git a/smali_classes5/com/samsung/android/multicontrol/MultiControlFeature.smali b/smali_classes5/com/samsung/android/multicontrol/MultiControlFeature.smali
+index 6c225b48..0664933c 100644
+--- a/smali_classes5/com/samsung/android/multicontrol/MultiControlFeature.smali
++++ b/smali_classes5/com/samsung/android/multicontrol/MultiControlFeature.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field public static final blacklist ENABLED:Z = false
++.field public static final blacklist ENABLED:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes5/com/samsung/android/remoteappmode/RemoteAppModeFeature.smali b/smali_classes5/com/samsung/android/remoteappmode/RemoteAppModeFeature.smali
+index f93b503f..09a2e415 100644
+--- a/smali_classes5/com/samsung/android/remoteappmode/RemoteAppModeFeature.smali
++++ b/smali_classes5/com/samsung/android/remoteappmode/RemoteAppModeFeature.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field public static final blacklist ENABLED:Z = false
++.field public static final blacklist ENABLED:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes5/com/samsung/android/rune/CoreRune.smali b/smali_classes5/com/samsung/android/rune/CoreRune.smali
+index 8de6e6f7..fc276303 100644
+--- a/smali_classes5/com/samsung/android/rune/CoreRune.smali
++++ b/smali_classes5/com/samsung/android/rune/CoreRune.smali
+@@ -1960,7 +1960,7 @@
+ 
+ .field public static final blacklist VDC_SUPPORT_OBSERVER:Z
+ 
+-.field public static final blacklist WEARABLE_HMT_ENABLED:Z = false
++.field public static final blacklist WEARABLE_HMT_ENABLED:Z
+ 
+ .field public static final blacklist WIFI_OFFLOAD:Z
+ 
+@@ -3490,6 +3490,8 @@
+ 
+     move-result v4
+ 
++    const/4 v4, 0x1
++
+     sput-boolean v4, Lcom/samsung/android/rune/CoreRune;->FW_SUPPORT_APPLOCK:Z
+ 
+     if-nez v0, :cond_33
+diff --git a/smali_classes5/com/samsung/android/sepunion/SemUnionManager.smali b/smali_classes5/com/samsung/android/sepunion/SemUnionManager.smali
+index ac2412df..0dd3e2dc 100644
+--- a/smali_classes5/com/samsung/android/sepunion/SemUnionManager.smali
++++ b/smali_classes5/com/samsung/android/sepunion/SemUnionManager.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static final blacklist DEBUG:Z = false
++.field private static final blacklist DEBUG:Z
+ 
+ .field private static final blacklist TAG:Ljava/lang/String;
+ 
+diff --git a/smali_classes5/com/samsung/android/vibrator/VibRune.smali b/smali_classes5/com/samsung/android/vibrator/VibRune.smali
+index 2fb12911..a62b11ec 100644
+--- a/smali_classes5/com/samsung/android/vibrator/VibRune.smali
++++ b/smali_classes5/com/samsung/android/vibrator/VibRune.smali
+@@ -64,7 +64,7 @@
+ 
+ .field public static final blacklist SUPPORT_VIBRATION_TAG:Z = true
+ 
+-.field public static final blacklist SUPPORT_VIRTUAL_VIBRATION_SOUND:Z = false
++.field public static final blacklist SUPPORT_VIRTUAL_VIBRATION_SOUND:Z
+ 
+ .field private static blacklist mIsHapticEngineIndexSupported:Z
+ 
+diff --git a/smali_classes5/io/mesalabs/unica/KnoxPatchHooks.smali b/smali_classes5/io/mesalabs/unica/KnoxPatchHooks.smali
+new file mode 100644
+index 00000000..495ced02
+--- /dev/null
++++ b/smali_classes5/io/mesalabs/unica/KnoxPatchHooks.smali
+@@ -0,0 +1,269 @@
++.class public final Lio/mesalabs/unica/KnoxPatchHooks;
++.super Ljava/lang/Object;
++.source "KnoxPatchHooks.java"
++
++
++# static fields
++.field private static final blacklist DEBUG:Z = false
++
++.field private static final blacklist FIND_MY_MOBILE_PACKAGE_NAME:Ljava/lang/String; = "com.samsung.android.fmm"
++
++.field private static final blacklist SAMSUNG_CLOUD_PLATFORM_MANAGER_PACKAGE_NAME:Ljava/lang/String; = "com.samsung.android.scpm"
++
++.field private static final blacklist SAMSUNG_HEALTH_PACKAGE_NAME:Ljava/lang/String; = "com.sec.android.app.shealth"
++
++.field private static final blacklist SAMSUNG_TV_PLUS_PACKAGE_NAME:Ljava/lang/String; = "com.samsung.android.tvplus"
++
++.field private static final blacklist TAG:Ljava/lang/String; = "KnoxPatchHooks"
++
++.field private static volatile blacklist sPackageName:Ljava/lang/String;
++
++.field private static volatile blacklist sSpoofBuildTypeProp:Z
++
++.field private static volatile blacklist sSpoofKeystoreProp:Z
++
++.field private static volatile blacklist sSpoofKnox:Z
++
++
++# direct methods
++.method private constructor blacklist <init>()V
++    .locals 0
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    return-void
++.end method
++
++.method private static blacklist dlog(Ljava/lang/String;)V
++    .locals 0
++
++    return-void
++.end method
++
++.method public static blacklist init(Landroid/content/Context;)V
++    .locals 5
++
++    invoke-virtual {p0}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_0
++
++    return-void
++
++    :cond_0
++    sput-object v0, Lio/mesalabs/unica/KnoxPatchHooks;->sPackageName:Ljava/lang/String;
++
++    const/4 v1, 0x1
++
++    const/4 v2, 0x0
++
++    :try_start_0
++    invoke-virtual {p0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
++
++    move-result-object p0
++
++    invoke-virtual {p0, v0, v2}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
++
++    move-result-object p0
++
++    iget p0, p0, Landroid/content/pm/ApplicationInfo;->flags:I
++
++    and-int/lit16 p0, p0, 0x81
++
++    if-nez p0, :cond_1
++
++    move p0, v1
++
++    goto :goto_0
++
++    :cond_1
++    move p0, v2
++
++    :goto_0
++    sput-boolean p0, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofKnox:Z
++    :try_end_0
++    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
++
++    goto :goto_1
++
++    :catch_0
++    move-exception p0
++
++    new-instance v3, Ljava/lang/StringBuilder;
++
++    const-string v4, "sSpoofKnox = false; "
++
++    invoke-direct {v3, v4}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
++
++    move-result-object p0
++
++    invoke-virtual {p0}, Ljava/lang/Class;->getName()Ljava/lang/String;
++
++    move-result-object p0
++
++    invoke-virtual {v3, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    invoke-virtual {p0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p0
++
++    invoke-static {p0}, Lio/mesalabs/unica/KnoxPatchHooks;->dlog(Ljava/lang/String;)V
++
++    sput-boolean v2, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofKnox:Z
++
++    :goto_1
++    const-string p0, "com.samsung.android.scpm"
++
++    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result p0
++
++    sput-boolean p0, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofBuildTypeProp:Z
++
++    const-string p0, "com.samsung.android.fmm"
++
++    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result p0
++
++    if-nez p0, :cond_3
++
++    const-string p0, "com.sec.android.app.shealth"
++
++    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result p0
++
++    if-nez p0, :cond_3
++
++    const-string p0, "com.samsung.android.tvplus"
++
++    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result p0
++
++    if-eqz p0, :cond_2
++
++    goto :goto_2
++
++    :cond_2
++    move v1, v2
++
++    :cond_3
++    :goto_2
++    sput-boolean v1, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofKeystoreProp:Z
++
++    return-void
++.end method
++
++.method public static blacklist onEDMGetAPILevel()I
++    .locals 1
++
++    sget-boolean v0, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofKnox:Z
++
++    if-nez v0, :cond_0
++
++    const-string v0, "36"
++
++    invoke-static {v0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
++
++    move-result v0
++
++    return v0
++
++    :cond_0
++    const-string v0, "Spoofing EnterpriseDeviceManager.getAPILevel()"
++
++    invoke-static {v0}, Lio/mesalabs/unica/KnoxPatchHooks;->dlog(Ljava/lang/String;)V
++
++    const/4 v0, -0x1
++
++    return v0
++.end method
++
++.method public static blacklist onSystemPropertiesGet(Ljava/lang/String;)Ljava/lang/String;
++    .locals 3
++
++    const-string v0, "ro.build.type"
++
++    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_0
++
++    sget-boolean v0, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofBuildTypeProp:Z
++
++    if-eqz v0, :cond_1
++
++    const-string v0, "eng"
++
++    goto :goto_0
++
++    :cond_0
++    const-string v0, "ro.security.keystore.keytype"
++
++    invoke-virtual {p0, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_1
++
++    sget-boolean v0, Lio/mesalabs/unica/KnoxPatchHooks;->sSpoofKeystoreProp:Z
++
++    if-eqz v0, :cond_1
++
++    const-string v0, ""
++
++    goto :goto_0
++
++    :cond_1
++    const/4 v0, 0x0
++
++    :goto_0
++    if-eqz v0, :cond_2
++
++    new-instance v1, Ljava/lang/StringBuilder;
++
++    const-string v2, "Spoofing \""
++
++    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    const-string v1, "\" prop to \""
++
++    invoke-virtual {p0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    const-string v1, "\""
++
++    invoke-virtual {p0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p0
++
++    invoke-virtual {p0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p0
++
++    invoke-static {p0}, Lio/mesalabs/unica/KnoxPatchHooks;->dlog(Ljava/lang/String;)V
++
++    :cond_2
++    return-object v0
++.end method

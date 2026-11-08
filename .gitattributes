@@ -1,0 +1,12 @@
+*.apk binary
+*.jar binary
+*.apk* binary
+*.part_aa binary
+*.part_ab binary
+*.so binary
+*.img binary
+
+*.so binary
+*.img binary
+*.ogg binary
+*.qmg binary

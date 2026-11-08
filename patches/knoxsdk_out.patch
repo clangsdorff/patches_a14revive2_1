@@ -1,0 +1,15 @@
+diff --git a/smali/com/samsung/android/knox/EnterpriseDeviceManager.smali b/smali/com/samsung/android/knox/EnterpriseDeviceManager.smali
+index 2564934..56e0bc3 100644
+--- a/smali/com/samsung/android/knox/EnterpriseDeviceManager.smali
++++ b/smali/com/samsung/android/knox/EnterpriseDeviceManager.smali
+@@ -597,7 +597,9 @@
+ .method public static greylist getAPILevel()I
+     .locals 1
+ 
+-    const/4 v0, -0x1
++    invoke-static {}, Lio/mesalabs/unica/KnoxPatchHooks;->onEDMGetAPILevel()I
++
++    move-result v0
+ 
+     return v0
+ .end method

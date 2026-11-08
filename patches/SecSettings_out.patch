@@ -1,0 +1,589 @@
+diff --git a/smali/androidx/appcompat/widget/TooltipCompatHandler.smali b/smali/androidx/appcompat/widget/TooltipCompatHandler.smali
+index 8615194..a75b9b0 100644
+--- a/smali/androidx/appcompat/widget/TooltipCompatHandler.smali
++++ b/smali/androidx/appcompat/widget/TooltipCompatHandler.smali
+@@ -9,15 +9,15 @@
+ 
+ 
+ # static fields
+-.field private static sActiveHandler:Landroidx/appcompat/widget/TooltipCompatHandler; = null
++.field private static sActiveHandler:Landroidx/appcompat/widget/TooltipCompatHandler;
+ 
+-.field private static sIsCustomTooltipPosition:Z = false
++.field private static sIsCustomTooltipPosition:Z
+ 
+-.field private static sIsForceActionBarX:Z = false
++.field private static sIsForceActionBarX:Z
+ 
+-.field private static sIsForceBelow:Z = false
++.field private static sIsForceBelow:Z
+ 
+-.field private static sIsTooltipNull:Z = false
++.field private static sIsTooltipNull:Z
+ 
+ .field private static sLayoutDirection:I
+ 
+diff --git a/smali/androidx/appcompat/widget/VectorEnabledTintResources.smali b/smali/androidx/appcompat/widget/VectorEnabledTintResources.smali
+index 720f410..0a3d8fb 100644
+--- a/smali/androidx/appcompat/widget/VectorEnabledTintResources.smali
++++ b/smali/androidx/appcompat/widget/VectorEnabledTintResources.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static sCompatVectorFromResourcesEnabled:Z = false
++.field private static sCompatVectorFromResourcesEnabled:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/androidx/constraintlayout/solver/LinearSystem.smali b/smali/androidx/constraintlayout/solver/LinearSystem.smali
+index ba9474b..ad6012c 100644
+--- a/smali/androidx/constraintlayout/solver/LinearSystem.smali
++++ b/smali/androidx/constraintlayout/solver/LinearSystem.smali
+@@ -27,7 +27,7 @@
+ 
+ .field public static USE_BASIC_SYNONYMS:Z = true
+ 
+-.field public static USE_DEPENDENCY_ORDERING:Z = false
++.field public static USE_DEPENDENCY_ORDERING:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/androidx/fragment/app/FragmentManager.smali b/smali/androidx/fragment/app/FragmentManager.smali
+index 01d6656..9eeab92 100644
+--- a/smali/androidx/fragment/app/FragmentManager.smali
++++ b/smali/androidx/fragment/app/FragmentManager.smali
+@@ -18,7 +18,7 @@
+ 
+ 
+ # static fields
+-.field private static DEBUG:Z = false
++.field private static DEBUG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/androidx/loader/app/LoaderManagerImpl.smali b/smali/androidx/loader/app/LoaderManagerImpl.smali
+index 1adf79e..1d64b34 100644
+--- a/smali/androidx/loader/app/LoaderManagerImpl.smali
++++ b/smali/androidx/loader/app/LoaderManagerImpl.smali
+@@ -14,7 +14,7 @@
+ 
+ 
+ # static fields
+-.field static DEBUG:Z = false
++.field static DEBUG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/androidx/window/embedding/SplitController.smali b/smali/androidx/window/embedding/SplitController.smali
+index 6f9f79d..966308b 100644
+--- a/smali/androidx/window/embedding/SplitController.smali
++++ b/smali/androidx/window/embedding/SplitController.smali
+@@ -20,7 +20,7 @@
+     .end annotation
+ .end field
+ 
+-.field private static volatile globalInstance:Landroidx/window/embedding/SplitController; = null
++.field private static volatile globalInstance:Landroidx/window/embedding/SplitController;
+     .annotation build Lorg/jetbrains/annotations/Nullable;
+     .end annotation
+ .end field
+@@ -30,7 +30,7 @@
+     .end annotation
+ .end field
+ 
+-.field public static final sDebug:Z = false
++.field public static final sDebug:Z
+ 
+ 
+ # instance fields
+diff --git a/smali/com/airbnb/lottie/L.smali b/smali/com/airbnb/lottie/L.smali
+index 4d38e8d..1d15f61 100644
+--- a/smali/com/airbnb/lottie/L.smali
++++ b/smali/com/airbnb/lottie/L.smali
+@@ -4,17 +4,17 @@
+ 
+ 
+ # static fields
+-.field public static DBG:Z = false
++.field public static DBG:Z
+ 
+-.field private static depthPastMaxDepth:I = 0x0
++.field private static depthPastMaxDepth:I
+ 
+-.field private static sections:[Ljava/lang/String; = null
++.field private static sections:[Ljava/lang/String;
+ 
+-.field private static startTimeNs:[J = null
++.field private static startTimeNs:[J
+ 
+-.field private static traceDepth:I = 0x0
++.field private static traceDepth:I
+ 
+-.field private static traceEnabled:Z = false
++.field private static traceEnabled:Z
+ 
+ 
+ # direct methods
+diff --git a/smali/com/android/settings/applications/ProcStatsEntry.smali b/smali/com/android/settings/applications/ProcStatsEntry.smali
+index 938589a..4d803f1 100644
+--- a/smali/com/android/settings/applications/ProcStatsEntry.smali
++++ b/smali/com/android/settings/applications/ProcStatsEntry.smali
+@@ -25,7 +25,7 @@
+     .end annotation
+ .end field
+ 
+-.field private static DEBUG:Z = false
++.field private static DEBUG:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes2/com/android/settings/bluetooth/DevicePickerActivity.smali b/smali_classes2/com/android/settings/bluetooth/DevicePickerActivity.smali
+index 1924985..a10ba41 100644
+--- a/smali_classes2/com/android/settings/bluetooth/DevicePickerActivity.smali
++++ b/smali_classes2/com/android/settings/bluetooth/DevicePickerActivity.smali
+@@ -7,9 +7,9 @@
+ 
+ 
+ # static fields
+-.field public static canLaunchQuickBtView:Z = false
++.field public static canLaunchQuickBtView:Z
+ 
+-.field public static mMyPlacesCalled:Z = false
++.field public static mMyPlacesCalled:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes2/com/android/settings/fuelgauge/BatteryAppListPreferenceController.smali b/smali_classes2/com/android/settings/fuelgauge/BatteryAppListPreferenceController.smali
+index 61f2c42..6e1480a 100644
+--- a/smali_classes2/com/android/settings/fuelgauge/BatteryAppListPreferenceController.smali
++++ b/smali_classes2/com/android/settings/fuelgauge/BatteryAppListPreferenceController.smali
+@@ -18,7 +18,7 @@
+ 
+ 
+ # static fields
+-.field static final USE_FAKE_DATA:Z = false
++.field static final USE_FAKE_DATA:Z
+ 
+ .field static sConfig:Lcom/android/settings/fuelgauge/BatteryAppListPreferenceController$Config;
+ 
+diff --git a/smali_classes2/com/android/settingslib/bluetooth/LocalBluetoothManager.smali b/smali_classes2/com/android/settingslib/bluetooth/LocalBluetoothManager.smali
+index 5dac24f..281ba71 100644
+--- a/smali_classes2/com/android/settingslib/bluetooth/LocalBluetoothManager.smali
++++ b/smali_classes2/com/android/settingslib/bluetooth/LocalBluetoothManager.smali
+@@ -12,9 +12,9 @@
+ 
+ 
+ # static fields
+-.field private static mForegroundCount:I = 0x0
++.field private static mForegroundCount:I
+ 
+-.field private static mSystemUiInstance:Z = false
++.field private static mSystemUiInstance:Z
+ 
+ .field private static sInstance:Lcom/android/settingslib/bluetooth/LocalBluetoothManager;
+ 
+diff --git a/smali_classes2/com/google/android/gms/common/GooglePlayServicesUtilLight.smali b/smali_classes2/com/google/android/gms/common/GooglePlayServicesUtilLight.smali
+index 9cf45d9..860026a 100644
+--- a/smali_classes2/com/google/android/gms/common/GooglePlayServicesUtilLight.smali
++++ b/smali_classes2/com/google/android/gms/common/GooglePlayServicesUtilLight.smali
+@@ -11,7 +11,7 @@
+ 
+ .field static final sCanceledAvailabilityNotification:Ljava/util/concurrent/atomic/AtomicBoolean;
+ 
+-.field static zza:Z = false
++.field static zza:Z
+ 
+ .field private static final zzc:Ljava/util/concurrent/atomic/AtomicBoolean;
+ 
+diff --git a/smali_classes2/com/google/android/gms/common/internal/GmsClientSupervisor.smali b/smali_classes2/com/google/android/gms/common/internal/GmsClientSupervisor.smali
+index 6466054..c3ebfdf 100644
+--- a/smali_classes2/com/google/android/gms/common/internal/GmsClientSupervisor.smali
++++ b/smali_classes2/com/google/android/gms/common/internal/GmsClientSupervisor.smali
+@@ -10,9 +10,9 @@
+ 
+ .field private static final zzc:Ljava/lang/Object;
+ 
+-.field private static zzd:Lcom/google/android/gms/common/internal/zzr; = null
++.field private static zzd:Lcom/google/android/gms/common/internal/zzr;
+ 
+-.field private static zze:Z = false
++.field private static zze:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/samsung/android/settings/biometrics/face/FaceSettings.smali b/smali_classes3/com/samsung/android/settings/biometrics/face/FaceSettings.smali
+index 506c4ae..4077874 100644
+--- a/smali_classes3/com/samsung/android/settings/biometrics/face/FaceSettings.smali
++++ b/smali_classes3/com/samsung/android/settings/biometrics/face/FaceSettings.smali
+@@ -10,7 +10,7 @@
+ # static fields
+ .field public static final STATUS_LOGGING_PROVIDER:Lcom/samsung/android/settings/logging/status/StatusLogger$StatusLoggingProvider;
+ 
+-.field private static mIsKeepEnrollSession:Z = false
++.field private static mIsKeepEnrollSession:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/biometrics/face/FaceStayOnLockScreen$FaceStayOnLockScreenFragment.smali b/smali_classes3/com/samsung/android/settings/biometrics/face/FaceStayOnLockScreen$FaceStayOnLockScreenFragment.smali
+index aaa8adc..72312a5 100644
+--- a/smali_classes3/com/samsung/android/settings/biometrics/face/FaceStayOnLockScreen$FaceStayOnLockScreenFragment.smali
++++ b/smali_classes3/com/samsung/android/settings/biometrics/face/FaceStayOnLockScreen$FaceStayOnLockScreenFragment.smali
+@@ -18,7 +18,7 @@
+ 
+ 
+ # static fields
+-.field private static mIsFinished:Z = false
++.field private static mIsFinished:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/biometrics/face/FaceUsefulFeature$FaceUsefulFeatureFragment.smali b/smali_classes3/com/samsung/android/settings/biometrics/face/FaceUsefulFeature$FaceUsefulFeatureFragment.smali
+index a88c723..6735a41 100644
+--- a/smali_classes3/com/samsung/android/settings/biometrics/face/FaceUsefulFeature$FaceUsefulFeatureFragment.smali
++++ b/smali_classes3/com/samsung/android/settings/biometrics/face/FaceUsefulFeature$FaceUsefulFeatureFragment.smali
+@@ -18,7 +18,7 @@
+ 
+ 
+ # static fields
+-.field private static mIsFinished:Z = false
++.field private static mIsFinished:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/biometrics/face/SuwFaceStayOnLockScreen.smali b/smali_classes3/com/samsung/android/settings/biometrics/face/SuwFaceStayOnLockScreen.smali
+index f8302d1..ea2879c 100644
+--- a/smali_classes3/com/samsung/android/settings/biometrics/face/SuwFaceStayOnLockScreen.smali
++++ b/smali_classes3/com/samsung/android/settings/biometrics/face/SuwFaceStayOnLockScreen.smali
+@@ -8,7 +8,7 @@
+ 
+ 
+ # static fields
+-.field private static mIsFinished:Z = false
++.field private static mIsFinished:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothScanDialog.smali b/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothScanDialog.smali
+index 1c154cb..257e0c8 100644
+--- a/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothScanDialog.smali
++++ b/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothScanDialog.smali
+@@ -7,7 +7,7 @@
+ 
+ 
+ # static fields
+-.field public static IS_ACTION_BUTTON:Z = false
++.field public static IS_ACTION_BUTTON:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothSettings.smali b/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothSettings.smali
+index 64f4ae1..bc140ea 100644
+--- a/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothSettings.smali
++++ b/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothSettings.smali
+@@ -28,11 +28,11 @@
+     .end annotation
+ .end field
+ 
+-.field private static mInteractiveHelp:Z = false
++.field private static mInteractiveHelp:Z
+ 
+-.field private static mIsDeviceProfileShown:Z = false
++.field private static mIsDeviceProfileShown:Z
+ 
+-.field public static mIsForegroundBtSettings:Z = false
++.field public static mIsForegroundBtSettings:Z
+ 
+ .field private static mLocalAdapterName:Ljava/lang/String;
+ 
+diff --git a/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothStatusReceiver.smali b/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothStatusReceiver.smali
+index 388a0b2..874e8ed 100644
+--- a/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothStatusReceiver.smali
++++ b/smali_classes3/com/samsung/android/settings/bluetooth/BluetoothStatusReceiver.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static mHC_starting:Z = false
++.field private static mHC_starting:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/bluetooth/CheckBluetoothStateActivity.smali b/smali_classes3/com/samsung/android/settings/bluetooth/CheckBluetoothStateActivity.smali
+index c5d73c3..04bd9c9 100644
+--- a/smali_classes3/com/samsung/android/settings/bluetooth/CheckBluetoothStateActivity.smali
++++ b/smali_classes3/com/samsung/android/settings/bluetooth/CheckBluetoothStateActivity.smali
+@@ -4,13 +4,13 @@
+ 
+ 
+ # static fields
+-.field private static mDialogExist:Z = false
++.field private static mDialogExist:Z
+ 
+-.field private static mExpectingBluetoothOn:Z = false
++.field private static mExpectingBluetoothOn:Z
+ 
+-.field private static mIsDestroyed:Z = false
++.field private static mIsDestroyed:Z
+ 
+-.field private static mIsRegisterKeyGuardReceiver:Z = false
++.field private static mIsRegisterKeyGuardReceiver:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/bluetooth/SecDevicePickerDialog.smali b/smali_classes3/com/samsung/android/settings/bluetooth/SecDevicePickerDialog.smali
+index 224728b..2e56761 100644
+--- a/smali_classes3/com/samsung/android/settings/bluetooth/SecDevicePickerDialog.smali
++++ b/smali_classes3/com/samsung/android/settings/bluetooth/SecDevicePickerDialog.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field public static IS_ACTION_BUTTON:Z = false
++.field public static IS_ACTION_BUTTON:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/display/controller/SecOutDoorModePreferenceController.smali b/smali_classes3/com/samsung/android/settings/display/controller/SecOutDoorModePreferenceController.smali
+index 6c691bc..c805c6c 100644
+--- a/smali_classes3/com/samsung/android/settings/display/controller/SecOutDoorModePreferenceController.smali
++++ b/smali_classes3/com/samsung/android/settings/display/controller/SecOutDoorModePreferenceController.smali
+@@ -81,11 +81,7 @@
+ .method public isAvailable()Z
+     .locals 0
+ 
+-    iget-object p0, p0, Lcom/android/settingslib/core/AbstractPreferenceController;->mContext:Landroid/content/Context;
+-
+-    invoke-static {p0}, Lcom/samsung/android/settings/Rune;->supportOutdoorMode(Landroid/content/Context;)Z
+-
+-    move-result p0
++    const/4 p0, 0x1
+ 
+     return p0
+ .end method
+diff --git a/smali_classes3/com/samsung/android/settings/galaxysystemupdate/GalaxySystemUpdateFragment.smali b/smali_classes3/com/samsung/android/settings/galaxysystemupdate/GalaxySystemUpdateFragment.smali
+index 7659b49..77d1763 100644
+--- a/smali_classes3/com/samsung/android/settings/galaxysystemupdate/GalaxySystemUpdateFragment.smali
++++ b/smali_classes3/com/samsung/android/settings/galaxysystemupdate/GalaxySystemUpdateFragment.smali
+@@ -10,7 +10,7 @@
+ # static fields
+ .field private static MSG_REQUEST_CHECK_FOR_UPDATE:I = 0x1
+ 
+-.field private static isUpdateSupportedDevice:Z = false
++.field private static isUpdateSupportedDevice:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/location/HighPrecisionPositionServicePreferenceController.smali b/smali_classes3/com/samsung/android/settings/location/HighPrecisionPositionServicePreferenceController.smali
+index 70b9d77..ceae8be 100644
+--- a/smali_classes3/com/samsung/android/settings/location/HighPrecisionPositionServicePreferenceController.smali
++++ b/smali_classes3/com/samsung/android/settings/location/HighPrecisionPositionServicePreferenceController.smali
+@@ -9,7 +9,7 @@
+ # static fields
+ .field private static final KEY_HIGH_PRECISION_POSITION_SERVICE:Ljava/lang/String; = "high_precision_position_service"
+ 
+-.field private static final SUPPORT_HIGH_PRECISION_POSITION_SERVICE:Z = false
++.field private static final SUPPORT_HIGH_PRECISION_POSITION_SERVICE:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/com/samsung/android/settings/navigationbar/NavigationBarSettingsUtil.smali b/smali_classes3/com/samsung/android/settings/navigationbar/NavigationBarSettingsUtil.smali
+index 5075524..2ec81c4 100644
+--- a/smali_classes3/com/samsung/android/settings/navigationbar/NavigationBarSettingsUtil.smali
++++ b/smali_classes3/com/samsung/android/settings/navigationbar/NavigationBarSettingsUtil.smali
+@@ -8,13 +8,13 @@
+ 
+ .field private static MODE_GESTURE:I = 0x1
+ 
+-.field private static sBottomInsetScale:[F = null
++.field private static sBottomInsetScale:[F
+ 
+-.field private static sInsetScale:[F = null
++.field private static sInsetScale:[F
+ 
+-.field private static sIsForceUpdate:Z = false
++.field private static sIsForceUpdate:Z
+ 
+-.field private static sIsWalletApp:Z = false
++.field private static sIsWalletApp:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/samsung/android/settings/notification/reminder/NotificationUtils.smali b/smali_classes3/com/samsung/android/settings/notification/reminder/NotificationUtils.smali
+index 07e60cf..07edd64 100644
+--- a/smali_classes3/com/samsung/android/settings/notification/reminder/NotificationUtils.smali
++++ b/smali_classes3/com/samsung/android/settings/notification/reminder/NotificationUtils.smali
+@@ -18,9 +18,9 @@
+     .end annotation
+ .end field
+ 
+-.field public static mInstalledAppCountInWhiteList:I = 0x0
++.field public static mInstalledAppCountInWhiteList:I
+ 
+-.field public static mIsAllAppChecked:Z = false
++.field public static mIsAllAppChecked:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/samsung/android/settings/security/SecurityUtils.smali b/smali_classes3/com/samsung/android/settings/security/SecurityUtils.smali
+index bf32376..f80aa6f 100644
+--- a/smali_classes3/com/samsung/android/settings/security/SecurityUtils.smali
++++ b/smali_classes3/com/samsung/android/settings/security/SecurityUtils.smali
+@@ -4,9 +4,9 @@
+ 
+ 
+ # static fields
+-.field private static mFeatureChecked:Z = false
++.field private static mFeatureChecked:Z
+ 
+-.field private static mFeatureEnabled:Z = false
++.field private static mFeatureEnabled:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/samsung/android/settings/share/data/ShareDBHelper.smali b/smali_classes3/com/samsung/android/settings/share/data/ShareDBHelper.smali
+index 35fadba..a0360c7 100644
+--- a/smali_classes3/com/samsung/android/settings/share/data/ShareDBHelper.smali
++++ b/smali_classes3/com/samsung/android/settings/share/data/ShareDBHelper.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static IS_UPGRADED:Z = false
++.field private static IS_UPGRADED:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/samsung/android/settings/usefulfeature/UsefulfeatureUtils.smali b/smali_classes3/com/samsung/android/settings/usefulfeature/UsefulfeatureUtils.smali
+index d25f645..99c4e92 100644
+--- a/smali_classes3/com/samsung/android/settings/usefulfeature/UsefulfeatureUtils.smali
++++ b/smali_classes3/com/samsung/android/settings/usefulfeature/UsefulfeatureUtils.smali
+@@ -26,15 +26,15 @@
+ 
+ .field public static final PINNED_EDGE_CONTENT_URI:Landroid/net/Uri;
+ 
+-.field private static mAccessControlEnabled:Z = false
++.field private static mAccessControlEnabled:Z
+ 
+-.field private static mAccessibilityEnabled:Z = false
++.field private static mAccessibilityEnabled:Z
+ 
+-.field private static mAssistantMenuEnabled:Z = false
++.field private static mAssistantMenuEnabled:Z
+ 
+-.field private static mTalkBackEnabled:Z = false
++.field private static mTalkBackEnabled:Z
+ 
+-.field private static mUniversalSwitchEnabled:Z = false
++.field private static mUniversalSwitchEnabled:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/com/samsung/android/settings/usefulfeature/controller/AppLockPreferenceController.smali b/smali_classes3/com/samsung/android/settings/usefulfeature/controller/AppLockPreferenceController.smali
+index d978262..16cd6b6 100644
+--- a/smali_classes3/com/samsung/android/settings/usefulfeature/controller/AppLockPreferenceController.smali
++++ b/smali_classes3/com/samsung/android/settings/usefulfeature/controller/AppLockPreferenceController.smali
+@@ -129,48 +129,9 @@
+ .method public getAvailabilityStatus()I
+     .locals 1
+ 
+-    const-string v0, "applock"
+-
+-    invoke-static {v0}, Lcom/android/settingslib/Utils;->supportEnhancedFeature(Ljava/lang/String;)Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_1
+-
+-    invoke-static {}, Landroid/os/UserHandle;->myUserId()I
+-
+-    move-result v0
+-
+-    if-nez v0, :cond_1
+-
+-    invoke-static {}, Lcom/samsung/android/settings/Rune;->isSupportSSecure()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    iget-object p0, p0, Lcom/android/settingslib/core/AbstractPreferenceController;->mContext:Landroid/content/Context;
+-
+-    const-string v0, "com.samsung.android.app.sprotect"
+-
+-    invoke-static {p0, v0}, Lcom/android/settings/Utils;->hasPackage(Landroid/content/Context;Ljava/lang/String;)Z
+-
+-    move-result p0
+-
+-    if-nez p0, :cond_0
+-
+-    goto :goto_0
+-
+-    :cond_0
+     const/4 p0, 0x0
+ 
+     return p0
+-
+-    :cond_1
+-    :goto_0
+-    const/4 p0, 0x3
+-
+-    return p0
+ .end method
+ 
+ .method public bridge synthetic getBackgroundWorkerClass()Ljava/lang/Class;
+diff --git a/smali_classes3/com/samsung/android/settings/wifi/develop/WifiDevelopmentSettingsEnabler.smali b/smali_classes3/com/samsung/android/settings/wifi/develop/WifiDevelopmentSettingsEnabler.smali
+index fc25aa9..601c114 100644
+--- a/smali_classes3/com/samsung/android/settings/wifi/develop/WifiDevelopmentSettingsEnabler.smali
++++ b/smali_classes3/com/samsung/android/settings/wifi/develop/WifiDevelopmentSettingsEnabler.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static wifiDevelopmentSettingsEnabled:Z = false
++.field private static wifiDevelopmentSettingsEnabled:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/gov/nist/core/Debug.smali b/smali_classes3/gov/nist/core/Debug.smali
+index 976f6e2..db822c1 100644
+--- a/smali_classes3/gov/nist/core/Debug.smali
++++ b/smali_classes3/gov/nist/core/Debug.smali
+@@ -4,9 +4,9 @@
+ 
+ 
+ # static fields
+-.field public static debug:Z = false
++.field public static debug:Z
+ 
+-.field public static parserDebug:Z = false
++.field public static parserDebug:Z
+ 
+ 
+ # direct methods
+diff --git a/smali_classes3/gov/nist/javax/sip/header/SIPHeaderList.smali b/smali_classes3/gov/nist/javax/sip/header/SIPHeaderList.smali
+index b30dd8a..e329ed8 100644
+--- a/smali_classes3/gov/nist/javax/sip/header/SIPHeaderList.smali
++++ b/smali_classes3/gov/nist/javax/sip/header/SIPHeaderList.smali
+@@ -20,7 +20,7 @@
+ 
+ 
+ # static fields
+-.field private static prettyEncode:Z = false
++.field private static prettyEncode:Z
+ 
+ 
+ # instance fields
+diff --git a/smali_classes3/samsung/uwb/UwbAdapter.smali b/smali_classes3/samsung/uwb/UwbAdapter.smali
+index 0a0cf7e..e77eed6 100644
+--- a/smali_classes3/samsung/uwb/UwbAdapter.smali
++++ b/smali_classes3/samsung/uwb/UwbAdapter.smali
+@@ -4,7 +4,7 @@
+ 
+ 
+ # static fields
+-.field private static sIsInitialized:Z = false
++.field private static sIsInitialized:Z
+ 
+ .field private static sUwbAdapters:Ljava/util/HashMap;
+     .annotation system Ldalvik/annotation/Signature;

@@ -1,0 +1,81 @@
+getprop("ro.boot.em.model") == "SM-A145F" || abort("E3004: This package is for \"a14\" devices; this is a \"" + getprop("ro.product.device") + "\".");
+ui_print(" ");
+ui_print ("                     _    _ _  _                    ");
+ui_print ("                    / \  / | || |                   ");
+ui_print ("                   / _ \ | | || |_                  ");
+ui_print ("                  / ___ \| |__   _|                 ");
+ui_print ("                 /_/   \_\_|  |_|                   ");
+ui_print ("        ____  _______     _______     _______        ");
+ui_print ("       |  _ \| ____\ \   / /_ _\ \   / / ____|       ");
+ui_print ("       | |_) |  _|  \ \ / / | | \ \ / /|  _|         ");
+ui_print ("       |  _ <| |___  \ V /  | |  \ V / | |___        ");
+ui_print ("       |_| \_\_____|  \_/  |___|  \_/  |_____|       ");
+ui_print (" ");
+ui_print (" ");
+ui_print (" -- Version 2.1");
+ui_print (" -- OneUI 5.1 A145FXXS4AWJ4 Base with langsdorffkernel@3.5");
+ui_print (" ");
+
+
+# --- Start patching dynamic partitions ---
+
+
+# Update dynamic partition metadata
+
+assert(update_dynamic_partitions(package_extract_file("dynamic_partitions_op_list"), package_extract_file("unsparse_super_empty.img")));
+
+# Patch partition system
+
+ui_print("Patching system image unconditionally...");
+show_progress(0.400000, 0);
+block_image_update(map_partition("system"), package_extract_file("system.transfer.list"), "system.new.dat", "system.patch.dat") ||
+  abort("E1001: Failed to update system image.");
+
+# Patch partition vendor
+
+ui_print("Patching vendor image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update(map_partition("vendor"), package_extract_file("vendor.transfer.list"), "vendor.new.dat", "vendor.patch.dat") ||
+  abort("E2001: Failed to update vendor image.");
+
+# Patch partition product
+
+ui_print("Patching product image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update(map_partition("product"), package_extract_file("product.transfer.list"), "product.new.dat", "product.patch.dat") ||
+  abort("E2001: Failed to update product image.");
+
+# Patch partition odm
+
+ui_print("Patching odm image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update(map_partition("odm"), package_extract_file("odm.transfer.list"), "odm.new.dat", "odm.patch.dat") ||
+  abort("E2001: Failed to update odm image.");
+
+# Patch partition vendor_dlkm
+
+ui_print("Patching vendor_dlkm image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update(map_partition("vendor_dlkm"), package_extract_file("vendor_dlkm.transfer.list"), "vendor_dlkm.new.dat", "vendor_dlkm.patch.dat") ||
+  abort("E2001: Failed to update vendor_dlkm image.");
+
+# Patch partition system_dlkm
+
+ui_print("Patching system_dlkm image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update(map_partition("system_dlkm"), package_extract_file("system_dlkm.transfer.list"), "system_dlkm.new.dat", "system_dlkm.patch.dat") ||
+  abort("E2001: Failed to update system_dlkm image.");
+
+# --- End patching dynamic partitions ---
+
+ui_print("Full Patching vendor_boot.img img...");
+package_extract_file("vendor_boot.img", "/dev/block/bootdevice/by-name/vendor_boot");
+ui_print("Installing boot image...");
+package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
+ui_print("Installing up_param image...");
+package_extract_file("vbmeta.img", "/dev/block/bootdevice/by-name/vbmeta");
+set_progress(1.000000);
+package_extract_file("up_param.bin", "/dev/block/bootdevice/by-name/up_param");
+set_progress(1.000000);
+ui_print("************************************************");
+ui_print(" ");
